@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.75ac5d7e.chunk.css",
-    "main.js": "/static/js/main.a6b7e2e1.chunk.js",
-    "main.js.map": "/static/js/main.a6b7e2e1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.05e8a15e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.05e8a15e.js.map",
-    "static/js/2.5c641c3b.chunk.js": "/static/js/2.5c641c3b.chunk.js",
-    "static/js/2.5c641c3b.chunk.js.map": "/static/js/2.5c641c3b.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.75ac5d7e.chunk.css.map": "/static/css/main.75ac5d7e.chunk.css.map",
-    "static/js/2.5c641c3b.chunk.js.LICENSE.txt": "/static/js/2.5c641c3b.chunk.js.LICENSE.txt"
+    "main.css": "/databend/static/css/main.75ac5d7e.chunk.css",
+    "main.js": "/databend/static/js/main.a6b7e2e1.chunk.js",
+    "main.js.map": "/databend/static/js/main.a6b7e2e1.chunk.js.map",
+    "runtime-main.js": "/databend/static/js/runtime-main.1dc55859.js",
+    "runtime-main.js.map": "/databend/static/js/runtime-main.1dc55859.js.map",
+    "static/js/2.5c641c3b.chunk.js": "/databend/static/js/2.5c641c3b.chunk.js",
+    "static/js/2.5c641c3b.chunk.js.map": "/databend/static/js/2.5c641c3b.chunk.js.map",
+    "index.html": "/databend/index.html",
+    "static/css/main.75ac5d7e.chunk.css.map": "/databend/static/css/main.75ac5d7e.chunk.css.map",
+    "static/js/2.5c641c3b.chunk.js.LICENSE.txt": "/databend/static/js/2.5c641c3b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.05e8a15e.js",
+    "static/js/runtime-main.1dc55859.js",
     "static/js/2.5c641c3b.chunk.js",
     "static/css/main.75ac5d7e.chunk.css",
     "static/js/main.a6b7e2e1.chunk.js"
