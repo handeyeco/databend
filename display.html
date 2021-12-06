@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Databend Display</title>
+    <style>
+      body {
+        background: #222;
+        font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        padding: 2rem 0;
+      }
+
+      .control {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        background: #3498db;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="control">
+      <label>
+        <input type="checkbox" id="preview" checked="true" autocomplete="off" />
+        Show split previews
+      </label>
+    </div>
+    <canvas id="canvas"></canvas>
+  </body>
+</html>
+
+<script>
+  const bc = new BroadcastChannel('image-update')
+  const canvas = document.getElementById('canvas')
+  const ctx = canvas.getContext('2d')
+  let lastRender
+  let lastPreview
+  let showPreview = true
+
+  function draw(data) {
+    let ratio = 1
+    console.log(data)
+    const { innerWidth, innerHeight } = window
+    if (data.width > innerWidth || data.height > innerHeight) {
+      const widthScaleRatio = innerWidth / data.width
+      const heightScaleRatio = innerHeight / data.height
+      ratio = Math.min(widthScaleRatio, heightScaleRatio)
+    }
+
+    const hiddenCanvas = document.createElement('canvas')
+    hiddenCanvas.width = data.width
+    hiddenCanvas.height = data.height
+    const hiddenCtx = hiddenCanvas.getContext('2d')
+    hiddenCtx.putImageData(data.imgData, 0, 0)
+
+    const targetWidth = data.width * ratio
+    const targetHeight = data.height * ratio
+    console.log({ data, targetHeight, targetWidth, innerWidth, wWidth: window.innerWidth })
+    canvas.width = targetWidth
+    canvas.height = targetHeight
+    ctx.clearRect(0, 0, targetWidth, targetHeight)
+    ctx.drawImage(hiddenCanvas, 0, 0, targetWidth, targetHeight)
+  }
+
+  const showPreviewCheck = document.getElementById('preview')
+  showPreviewCheck.onchange = () => {
+    showPreview = showPreviewCheck.checked
+    draw(showPreview ? lastPreview : lastRender)
+  }
+
+  bc.onmessage = ({ data }) => {
+    if (!data) return
+
+    if (data.preview) {
+      lastPreview = data
+    } else {
+      lastRender = data
+    }
+
+    if (data.preview === showPreview) {
+      draw(data)
+    }
+  }
+
+  bc.postMessage({ type: 'subscribe' })
+</script>
